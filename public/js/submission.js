@@ -6,8 +6,8 @@ var Submission = function(name, url, title, desc) {
 }
 
 var Contest = function(submissionOne, submissionTwo) {
-	this.subOne = submissionOne
-	this.subTwo = submissionTwo
+	this.subOne   = submissionOne
+	this.subTwo   = submissionTwo
 	this.votesOne = 0
 	this.votesTwo = 0
 }
