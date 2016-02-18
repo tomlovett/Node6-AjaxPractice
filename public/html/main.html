@@ -3,7 +3,8 @@
 <head>
 	<title>Video Contest</title>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
-	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="../js/contest.js"></script>
+	<script type="text/javascript" src="../js/contestFactory.js"></script>
 </head>
 <body ng-controller="contestHandler">
 
@@ -17,7 +18,7 @@
 
 
 	<p>http://youtube.com/embed/Y7O0rBGSqjI</p>
-	<form ng-submit="submitVideo()">
+	<form ng-submit="newSubmission(newVideo)">
 		<input ng-model="newVideo.name"  placeholder="Your Name"></input>
  		<input ng-model="newVideo.url"   placeholder="Video URL"></input>
 	 	<input ng-model="newVideo.title" placeholder="Song Title"></input>
