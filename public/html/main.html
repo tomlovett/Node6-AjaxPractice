@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="contest">
 <head>
 	<title>Video Contest</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
 </head>
-<body>
+<body ng-controller="contestHandler">
 
 	<h2>Beach Boys Video Contest!</h2>
 
-	
+	<div ng-repeat="video in submissions">
+		<h4>{{video.title}}</h4>
+		<iframe width="560" height="315" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
+		<p>{{video.desc}}</p>
+	</div>
+
+
+	<p>http://youtube.com/embed/Y7O0rBGSqjI</p>
+	<form ng-submit="submitVideo()">
+		<input ng-model="newVideo.name"  placeholder="Your Name"></input>
+ 		<input ng-model="newVideo.url"   placeholder="Video URL"></input>
+	 	<input ng-model="newVideo.title" placeholder="Song Title"></input>
+		<input ng-model="newVideo.desc"  placeholder="Description"></input>
+		<input type="submit"></input>
+
+ 	</form>
+
+ 	<p ng-show="tooMany">Error: There can only be eight submissions at one time. Try again later, friend.</p>
 
 </body>
 </html>
