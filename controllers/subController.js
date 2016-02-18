@@ -1,1 +1,6 @@
-subController.js
+
+
+module.exports = {
+	getVideos : getVideos,
+	newSubmission : newSubmission
+}

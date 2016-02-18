@@ -2,32 +2,24 @@ var app = require('express')()
 var bodyParser = require('body-parser')
 var logger = require('morgan')
 
+var subCtrl = require('./controllers/subController.js')
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
 
-var submissions = [
-	{
-		name  : 'David',
-		url   : 'https://www.youtube.com/watch?v=2s4slliAtQU',
-		title : 'Surfin\' USA',
-		desc  : 'The Beach Boys\' song "Surfin\' USA"'
-	},
-	{
-		name  : 'Noah',
-		url   : 'https://www.youtube.com/watch?v=KnPL5OXSBNE',
-		title : 'I Get Around',
-		desc  : 'The Beach Boys\' hit "I Get Around"'
-	},
-	{
-		name  : 'Brian',
-		url   : 'https://www.youtube.com/watch?v=AOMyS78o5YI',
-		title : 'God Only Knows',
-		desc  : 'The Beach Boys\' hit song "God Only Knows"'
-	}
-]
+app.get('/', function(req, res) {
+	res.sendFile('main.html', {root: __dirname + '/public/html'})
+})
 
+app.get('/api/fruits', subCtrl.getVideos)
+app.post('/api/fruits', subCtrl.newSubmission)
+
+var port = 3000
+app.listen(port, function() {
+	console.log('Server running on port ' + port)
+})
 
 
 // Server-side
