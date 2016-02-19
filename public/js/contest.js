@@ -7,6 +7,7 @@ angular.module('contest').controller('contestHandler', ['$scope', '$sce', 'conte
 	var refresh = function() {
 			contestFactory.getVideos().then(function(returnData) {
 				$scope.submissions = returnData.data
+				console.log('refresh')
 		})
 	}
 
@@ -26,8 +27,8 @@ angular.module('contest').controller('contestHandler', ['$scope', '$sce', 'conte
 	}
 
 	$scope.shuffleVids = function() {
-		contestFactory.shuffleVids()
-		refresh()
+		contestFactory.shuffleVids($scope.submissions)
+		// refresh()
 	}
 
 	$scope.deleteVid = function(video) {

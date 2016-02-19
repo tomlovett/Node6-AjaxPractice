@@ -1,10 +1,15 @@
+var _ = require('underscore')
+
 var allSubs = []
+var id = 0
 
 var Submission = function(vidDeets) {
 	this.name  = vidDeets.name
 	this.url   = vidDeets.url
 	this.title = vidDeets.title
 	this.desc  = vidDeets.desc
+	this.id    = id
+	id += 1
 	allSubs.push(this)
 }
 
@@ -26,6 +31,7 @@ Contest.prototype = {
 }
 
 var shuffleVids = function() {  // copied from StackOverflow (thumbs up!)
+	console.log('shuffleVids')
 	var j, x, i;
 	for (i = allSubs.length; i; i -= 1) {
 		j = Math.floor(Math.random() * i);
@@ -40,11 +46,10 @@ var shuffleVids = function() {  // copied from StackOverflow (thumbs up!)
  // removeVid() finds the index of the video rather than being passed an index, so it's all good.
 
 var removeVid = function(video) {
-	var index = allSubs.indexOf(video)
-	console.log('index: :', index)
-	console.log('all.indexOf :', allSubs[index])
+	var index = _.findWhere(allSubs, {id : video.id})
 	allSubs.splice(index, 1)
 }
+
 
 new Submission({
 	name  : 'David',
