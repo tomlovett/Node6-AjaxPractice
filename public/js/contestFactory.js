@@ -16,8 +16,6 @@ angular.module('contest').factory('contestFactory', ['$http', function($http) {
 		return $http.post('/api/delete', videoDeets)
 	}
 
-	// delete video
-
 	return {
 		getVideos     : getVideos,
 		newSubmission : newSubmission,

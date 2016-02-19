@@ -10,10 +10,13 @@
 
 	<h2>Beach Boys Video Contest!</h2>
 
+	<button ng-click="shuffleVids()">Shuffle Videos!</button>
+
 	<div ng-repeat="video in submissions">
 		<h4>{{video.title}}</h4>
 		<iframe width="560" height="315" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
 		<p>{{video.desc}}</p>
+		<button ng-click="deleteVid(video)">Delete me!</button>
 	</div>
 
 

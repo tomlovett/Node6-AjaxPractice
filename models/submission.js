@@ -35,10 +35,14 @@ var shuffleVids = function() {  // copied from StackOverflow (thumbs up!)
 	}
 }
 
-// allowing users to shuffle the back-end data is a bad idea. I would rather put this in contestFactory.js but I'm more curious to see that I can do this.
+// allowing users to shuffle the back-end data is a bad idea. this would be a very bad idea if I had more than one expected user.
+ // I would rather put this in contestFactory.js but I'm more curious to see that I can kick off a local data operation with a GET request.
+ // removeVid() finds the index of the video rather than being passed an index, so it's all good.
 
 var removeVid = function(video) {
 	var index = allSubs.indexOf(video)
+	console.log('index: :', index)
+	console.log('all.indexOf :', allSubs[index])
 	allSubs.splice(index, 1)
 }
 
