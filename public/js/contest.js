@@ -4,16 +4,16 @@ angular.module('contest').controller('contestHandler', ['$scope', '$sce', 'conte
 
 	$scope.verifyVid = $sce.trustAsResourceUrl  // workaround for html error with loading videos
 
-	var refresh = function() {
+	var refreshSubs = function() {
 			contestFactory.getVideos().then(function(returnData) {
 				$scope.submissions = returnData.data
 				console.log('refresh')
 		})
 	}
 
-	// handle contests in the browser window
-		// load all, divide into contests
-		// send up delete requests to database
+	// refreshSubs() is very slow as it is loading videos. haven't found a solution yet
+
+	refreshSubs()
 
 	$scope.newSubmission = function(videoDeets) {
 		if ($scope.submissions.length > 7) {
@@ -23,19 +23,27 @@ angular.module('contest').controller('contestHandler', ['$scope', '$sce', 'conte
 		$scope.tooMany = false
 		contestFactory.newSubmission(videoDeets)
 		$scope.newVideo = {}
-		refresh()
+		refreshSubs()
 	}
 
 	$scope.shuffleVids = function() {
 		contestFactory.shuffleVids($scope.submissions)
-		// refresh()
 	}
 
 	$scope.deleteVid = function(video) {
 		contestFactory.deleteVideo(video)
-		refresh()
+		refreshSubs()
 	}
 
-	refresh()
+	$scope.initContests = function() {
+		$scope.shuffleVids()
+		contestFactory.nextRound().then(function(returnData) {
+			$scope.contests = returnData.data
+		})
+	}
+
+	$scope.voteFor = function(video) {
+
+	}
 
 }])

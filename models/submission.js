@@ -3,6 +3,8 @@ var _ = require('underscore')
 var allSubs = []
 var id = 0
 
+var allContests = []
+
 var Submission = function(vidDeets) {
 	this.name  = vidDeets.name
 	this.url   = vidDeets.url
@@ -15,13 +17,14 @@ var Submission = function(vidDeets) {
 
 var Contest = function(submissionOne, submissionTwo) {
 	this.subOne   = submissionOne
-	this.subTwo   = submissionTwo
+	this.subTwo   = submissionTwo || null
 	this.votesOne = 0
 	this.votesTwo = 0
 }
 
 Contest.prototype = {
 	loser : function() {
+		if (!this.subTwo) return null
 		if (this.votesOne > this.votesTwo) {
 			return this.subTwo 
 		} else {
@@ -30,20 +33,14 @@ Contest.prototype = {
 	}
 }
 
-var shuffleVids = function() {  // copied from StackOverflow (thumbs up!)
-	console.log('shuffleVids')
-	var j, x, i;
-	for (i = allSubs.length; i; i -= 1) {
-		j = Math.floor(Math.random() * i);
-		x = allSubs[i-1];
-		allSubs[i-1] = allSubs[j];
-		allSubs[j] = x;
+var genContests = function() {
+	for (var i = 0; i < allSubs.length; i += 2) {
+		allContests.push(new Contest(allSubs[i], allSubs[i+1]))
+	}
+	if (allSubs.length % 2 == 1) {
+		allContests.push(new Contest(_.last(allSubs)))
 	}
 }
-
-// allowing users to shuffle the back-end data is a bad idea. this would be a very bad idea if I had more than one expected user.
- // I would rather put this in contestFactory.js but I'm more curious to see that I can kick off a local data operation with a GET request.
- // removeVid() finds the index of the video rather than being passed an index, so it's all good.
 
 var removeVid = function(video) {
 	var index = _.findWhere(allSubs, {id : video.id})
@@ -72,8 +69,8 @@ new Submission({
 
 module.exports = {
 	allSubs    : allSubs,
+	allContests: allContests,
 	Submission : Submission,
 	Contest    : Contest,
-	shuffleVids: shuffleVids,
 	removeVid  : removeVid
 }

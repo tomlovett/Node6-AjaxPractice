@@ -17,7 +17,8 @@ app.get('/', function(req, res) {
 app.get('/api/videos', subCtrl.getVideos)
 app.post('/api/videos', subCtrl.newSubmission)
 
-// app.get('/api/shuffle', subCtrl.shuffleVids)  -- deprecated
+app.post('api/nextRound', subCtrl.nextRound)
+
 app.post('/api/delete', subCtrl.removeVid)
 
 var port = 3000

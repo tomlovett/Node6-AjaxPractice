@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="contest">
+<head>
+	<title></title>
+</head>
+<body ng-controller="contestHandler">
+
+	<div ng-repeat="contest in contests">
+		<div style="display: inline-block">
+			<h4>{{video.title}}</h4>
+			<iframe width="560" height="315" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
+			<button ng-click="voteFor(contest.subOne)">Vote for me!</button>
+		</div>
+		<div style="display: inline-block">
+			<h4>{{video.title}}</h4>
+			<iframe width="560" height="315" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
+			<button ng-click="voteFor(contest.subTwo)">Vote for me!</button>
+		</div>
+	</div>
+
+</body>
+</html>
