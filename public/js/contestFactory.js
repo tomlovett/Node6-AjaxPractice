@@ -1,4 +1,4 @@
-angular.module('contest').factory('contestFactory', ['$http'], function($http) {
+angular.module('contest').factory('contestFactory', ['$http', function($http) {
 
 	var getVideos = function() {
 		return $http.get('/api/videos')
@@ -13,4 +13,4 @@ angular.module('contest').factory('contestFactory', ['$http'], function($http) {
 		newSubmission : newSubmission
 	}
 
-})
+}])

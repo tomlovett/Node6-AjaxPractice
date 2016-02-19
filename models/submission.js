@@ -17,15 +17,19 @@ var Contest = function(submissionOne, submissionTwo) {
 
 Contest.prototype = {
 	loser : function() {
-		(this.votesOne > this.votesTwo) ? return this.subTwo : return this.subOne
+		if (this.votesOne > this.votesTwo) {
+			return this.subTwo 
+		} else {
+			return this.subOne
+		}
 	}
 }
 
 new Submission({
-		name  : 'David',
-		url   : 'http://www.youtube.com/embed/2s4slliAtQU',
-		title : 'Surfin\' USA',
-		desc  : 'The Beach Boys\' song "Surfin\' USA"'
+	name  : 'David',
+	url   : 'http://www.youtube.com/embed/2s4slliAtQU',
+	title : 'Surfin\' USA',
+	desc  : 'The Beach Boys\' song "Surfin\' USA"'
 	})
 new Submission({
 	name  : 'Noah',
@@ -39,6 +43,8 @@ new Submission({
 	title : 'God Only Knows',
 	desc  : 'The Beach Boys\' hit song "God Only Knows"'
 })
+
+console.log(allSubs)
 
 module.exports = {
 	allSubs    : allSubs,
