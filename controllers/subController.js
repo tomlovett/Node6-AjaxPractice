@@ -9,7 +9,17 @@ var newSubmission = function(req, res) {
 	res.send(subModel.allSubs)
 }
 
+var shuffleVids = function() {
+	subModel.shuffleVids()
+}
+
+var removeVid = function(req, res) {
+	subModel.removeVid(req.body)
+}
+
 module.exports = {
-	getVideos : getVideos,
-	newSubmission : newSubmission
+	getVideos     : getVideos,
+	newSubmission : newSubmission,
+	shuffleVids   : shuffleVids,
+	removeVid     : removeVid
 }

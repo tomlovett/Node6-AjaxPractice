@@ -25,6 +25,23 @@ Contest.prototype = {
 	}
 }
 
+var shuffleVids = function() {  // copied from StackOverflow (thumbs up!)
+	var j, x, i;
+	for (i = allSubs.length; i; i -= 1) {
+		j = Math.floor(Math.random() * i);
+		x = allSubs[i-1];
+		allSubs[i-1] = allSubs[j];
+		allSubs[j] = x;
+	}
+}
+
+// allowing users to shuffle the back-end data is a bad idea. I would rather put this in contestFactory.js but I'm more curious to see that I can do this.
+
+var removeVid = function(video) {
+	var index = allSubs.indexOf(video)
+	allSubs.splice(index, 1)
+}
+
 new Submission({
 	name  : 'David',
 	url   : 'http://www.youtube.com/embed/2s4slliAtQU',
@@ -44,10 +61,10 @@ new Submission({
 	desc  : 'The Beach Boys\' hit song "God Only Knows"'
 })
 
-console.log(allSubs)
-
 module.exports = {
 	allSubs    : allSubs,
 	Submission : Submission,
-	Contest    : Contest
+	Contest    : Contest,
+	shuffleVids: shuffleVids,
+	removeVid  : removeVid
 }

@@ -17,6 +17,9 @@ app.get('/', function(req, res) {
 app.get('/api/videos', subCtrl.getVideos)
 app.post('/api/videos', subCtrl.newSubmission)
 
+app.get('/api/shuffle', subCtrl.shuffleVids)
+app.post('/api/delete', subCtrl.removeVid)
+
 var port = 3000
 app.listen(port, function() {
 	console.log('Server running on port ' + port)
