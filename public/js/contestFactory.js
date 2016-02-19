@@ -27,12 +27,33 @@ angular.module('contest').factory('contestFactory', ['$http', function($http) {
 		return $http.get('/api/nextRound')
 	}
 
+	var killLoser = function(contest) {
+		var loser 
+		// calculates outright winner, or assigns randomly
+		if (!contest.subTwo) { return }
+		if (contest.votesOne > contest.votesTwo) { 
+			loser = contest.subTwo
+		} else if (contest.votesTwo > contest.votesOne || Math.random() > .5) {
+			loser = contest.subOne
+		} else { loser = contest.subTwo}
+
+		deleteVideo(loser)
+	}
+
+	var declareWinner = function() {
+		console.log('calling declareWinner - contestFactory')
+		// return $http.get('/api/declareWinner')
+		window.location.href="winner.html"
+	}
+
 	return {
 		getVideos     : getVideos,
 		newSubmission : newSubmission,
 		shuffleVids   : shuffleVids,
 		deleteVideo   : deleteVideo,
-		nextRound     : nextRound
+		nextRound     : nextRound,
+		killLoser     : killLoser,
+		declareWinner : declareWinner
 	}
 
 }])

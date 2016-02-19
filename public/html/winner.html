@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="contest">
+<head>
+	<title>Winner!</title>
+	<title>Voting!</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+	<script type="text/javascript" src="../js/contest.js"></script>
+	<script type="text/javascript" src="../js/contestFactory.js"></script></head></head>
+<body ng-controller="contestHandler">
+
+	<div>
+		<img src="html/winner.png">
+	</div>
+
+	<h4>{{submissions[0].title}}</h4>
+	<iframe width="560" height="315" src="{{verifyVid(submissions[0].url)}}" frameborder="0" allowfullscreen></iframe>
+</body>
+</html>

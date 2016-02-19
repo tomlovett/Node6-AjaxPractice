@@ -16,21 +16,9 @@ var Submission = function(vidDeets) {
 }
 
 var Contest = function(submissionOne, submissionTwo) {
-	this.subOne   = submissionOne
-	this.subTwo   = submissionTwo || null
-	this.votesOne = 0
-	this.votesTwo = 0
-}
-
-Contest.prototype = {
-	loser : function() {
-		if (!this.subTwo) return null
-		if (this.votesOne > this.votesTwo) {
-			return this.subTwo 
-		} else {
-			return this.subOne
-		}
-	}
+	this.subOne = submissionOne
+	this.subTwo = submissionTwo || null
+	this.votes  = { 1: 0, 2: 0 }
 }
 
 var genContests = function() {
@@ -38,7 +26,6 @@ var genContests = function() {
 	for (var i = 0; i < allSubs.length; i += 2) {
 		allContests.push(new Contest(allSubs[i], allSubs[i+1]))
 	}
-	console.log('submission.js contests: ', allContests)
 	return allContests
 }
 

@@ -6,18 +6,23 @@
 	<script type="text/javascript" src="../js/contest.js"></script>
 	<script type="text/javascript" src="../js/contestFactory.js"></script></head>
 <body ng-controller="contestHandler">
-	<button ng-click="initContests()">Begin the Contest!</button>
+	<button ng-click="nextRound()">Next Round!</button>
 
 	<div ng-repeat="contest in contests">
 		<div style="display: inline-block">
-			<h4>{{video.title}}</h4>
-			<iframe width="250" height="145" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
-			<button ng-click="voteFor(contest.subOne)">Vote for me!</button>
+			<h4>{{contest.subOne.title}}</h4>
+			<iframe width="250" height="145" src="{{verifyVid(contest.subOne.url)}}" frameborder="0" allowfullscreen></iframe>
+			<br>
+			<button ng-click="voteFor(contest.votes, '1')">Vote for me!</button>
+			<span>Votes: {{contest.votes['1']}}</span>
 		</div>
-		<div style="display: inline-block">
-			<h4>{{video.title}}</h4>
-			<iframe width="250" height="145" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
-			<button ng-click="voteFor(contest.subTwo)">Vote for me!</button>
+		<h3 style="display: inline-block">VS</h3>
+		<div style="display: inline-block" ng-show="contest.subTwo">
+			<h4>{{contest.subTwo.title}}</h4>
+			<iframe width="250" height="145" src="{{verifyVid(contest.subTwo.url)}}" frameborder="0" allowfullscreen></iframe>
+			<br>
+			<button ng-click="voteFor(contest.votes, '2')">Vote for me!</button>
+			<span>Votes: {{contest.votes['2']}}</span>
 		</div>
 	</div>
 
