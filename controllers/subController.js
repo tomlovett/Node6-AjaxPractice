@@ -14,7 +14,7 @@ var removeVid = function(req, res) {
 }
 
 var nextRound = function(req, res) {
-	'osiudhg'
+	res.send(subModel.genContests())
 }
 
 module.exports = {

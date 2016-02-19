@@ -34,19 +34,18 @@ Contest.prototype = {
 }
 
 var genContests = function() {
+	allContests = []
 	for (var i = 0; i < allSubs.length; i += 2) {
 		allContests.push(new Contest(allSubs[i], allSubs[i+1]))
 	}
-	if (allSubs.length % 2 == 1) {
-		allContests.push(new Contest(_.last(allSubs)))
-	}
+	console.log('submission.js contests: ', allContests)
+	return allContests
 }
 
 var removeVid = function(video) {
 	var index = _.findWhere(allSubs, {id : video.id})
 	allSubs.splice(index, 1)
 }
-
 
 new Submission({
 	name  : 'David',
@@ -70,6 +69,7 @@ new Submission({
 module.exports = {
 	allSubs    : allSubs,
 	allContests: allContests,
+	genContests: genContests,
 	Submission : Submission,
 	Contest    : Contest,
 	removeVid  : removeVid

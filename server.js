@@ -14,12 +14,16 @@ app.get('/', function(req, res) {
 	res.sendFile('main.html', {root: __dirname + '/public/html'})
 })
 
-app.get('/api/videos', subCtrl.getVideos)
-app.post('/api/videos', subCtrl.newSubmission)
+app.get('/voting', function(req, res) {
+	res.sendFile('voting.html', {root: __dirname + '/public/html'})
+})
 
-app.post('api/nextRound', subCtrl.nextRound)
+app.get('/api/videos',    subCtrl.getVideos)
+app.post('/api/videos',   subCtrl.newSubmission)
 
-app.post('/api/delete', subCtrl.removeVid)
+app.get('/api/nextRound', subCtrl.nextRound)
+
+app.post('/api/delete',   subCtrl.removeVid)
 
 var port = 3000
 app.listen(port, function() {

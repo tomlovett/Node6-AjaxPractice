@@ -43,7 +43,7 @@ angular.module('contest').controller('contestHandler', ['$scope', '$sce', 'conte
 	}
 
 	$scope.voteFor = function(video) {
-
+		'pass data, son'
 	}
 
 }])

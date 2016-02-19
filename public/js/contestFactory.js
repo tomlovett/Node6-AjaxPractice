@@ -24,14 +24,15 @@ angular.module('contest').factory('contestFactory', ['$http', function($http) {
 	}
 
 	var nextRound = function() {
-		return $http.get('api/nextRound')
+		return $http.get('/api/nextRound')
 	}
 
 	return {
 		getVideos     : getVideos,
 		newSubmission : newSubmission,
 		shuffleVids   : shuffleVids,
-		deleteVideo   : deleteVideo
+		deleteVideo   : deleteVideo,
+		nextRound     : nextRound
 	}
 
 }])

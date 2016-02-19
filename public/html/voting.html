@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html ng-app="contest">
 <head>
-	<title></title>
-</head>
+	<title>Voting!</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+	<script type="text/javascript" src="../js/contest.js"></script>
+	<script type="text/javascript" src="../js/contestFactory.js"></script></head>
 <body ng-controller="contestHandler">
+	<button ng-click="initContests()">Begin the Contest!</button>
 
 	<div ng-repeat="contest in contests">
 		<div style="display: inline-block">
 			<h4>{{video.title}}</h4>
-			<iframe width="560" height="315" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
+			<iframe width="250" height="145" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
 			<button ng-click="voteFor(contest.subOne)">Vote for me!</button>
 		</div>
 		<div style="display: inline-block">
 			<h4>{{video.title}}</h4>
-			<iframe width="560" height="315" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
+			<iframe width="250" height="145" src="{{verifyVid(video.url)}}" frameborder="0" allowfullscreen></iframe>
 			<button ng-click="voteFor(contest.subTwo)">Vote for me!</button>
 		</div>
 	</div>
